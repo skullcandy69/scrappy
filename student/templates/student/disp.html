@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!link rel="stylesheet" href="style.css">
+    <!link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <style>
+        body
+{
+background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://st2.depositphotos.com/3569313/8373/i/950/depositphotos_83738860-stock-photo-blur-tropical-beach-with-sun.jpg');
+background-size: cover;
+background-position: center;
+height:100vh;
+}
+.Booking-Form
+{
+max-width: 350px;
+border: 1px solid #ced4da;
+margin: 10% auto 0;
+}
+.Form
+{
+padding:0 20px 20px;
+}
+.form label
+{
+margin-bottom: 5px;
+margin-top: 10px;
+font-size: 12px;
+color: #fff;
+}
+input::placeholder
+{
+color: #fff !important;
+}
+.input-grp
+{
+    width: 151px;
+    display: inline-block;
+}
+.form_control
+{
+font-size: 12px !important;
+border-radius: 0px !important;
+color: #fff !important;
+background: transparent !important;
+box-shadow: none !important;
+}
+.select-date::-webkit-inner-spin-button,
+.select-date::-webkit-outer-spin-button
+{
+-webkit-appearance: none;
+margin: 0;
+}
+.select-date::-webkit-calender-picker-indicator
+{
+background: transparent !important;
+}
+.flight
+{
+width: 100px;
+padding: 9px 0 !important;
+font-size: 12px !important;
+border: 1px solid #ced4da!important;
+background: transparent !important;
+box-shadow: none !important;
+border-radius: 0!important;
+}
+.flight:hover
+{
+background: #fff!important ;
+color:#000!important;
+transition: 0.5s;
+}
+    </style>
+</head>
+
+<h1><font size="10"><center>Details for all flights</center></font></h1>
+<hr>
+<font size="7"><pre>&nbsp Source | Destination | Start date | End date | Price</pre></font>
+<font size ='4'>
+{% for i,j,x,y,z,w,m,n in zipplist%}
+    &nbsp &nbsp   &nbsp &nbsp   &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp
+    {{i}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    {{j}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    {{x}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    {{y}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    {{z}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    {{w}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    {{m}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+    {{n}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+   <br>
+{% endfor %}
+</font>
+
+<font size="6"> &nbsp &nbsp   &nbsp &nbsp  Cheapest Flight</font><br>
+<font size="5">
+{% for a,b,c,d in zl %}
+    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Source: {{a}}<br>
+    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Destination: {{b}}<br>
+    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Date: {{c}}<br>
+    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Price: {{d}}₹<br>
+{% endfor %}
+</font>
+
+
