@@ -124,10 +124,7 @@ def function(request):
         # prices
         prices = browser.find_elements_by_xpath("//span[@data-test-id='listing-price-dollars']")
         price_list = [value.text.split('Rs')[1] for value in prices]
-        # a=pd.DataFrame(price_list)
-        # print(a)
 
-        # durations
         durations = browser.find_elements_by_xpath("//span[@data-test-id='duration']")
         durations_list = [durations[i].text for i in range(0,14)]
 
@@ -135,24 +132,9 @@ def function(request):
         stops = browser.find_elements_by_xpath("//span[@class='number-stops']")
         stops_list = [value.text for value in stops]
 
-        # layovers
-        # layovers = browser.find_elements_by_xpath("//span[@data-test-id='layover-airport-stops']")
-        # layovers_list = [value.text for value in layovers]
-
-        # now = datetime.datetime.now()
-        # current_date = (str(now.year) + '-' + str(now.month) + '-' + str(now.day))
-        # current_time = (str(now.hour) + ':' + str(now.minute))
-        # current_price = 'price' + '(' + current_date + '---' + current_time + ')'
         current_price = 'price'
         for i in range(len(dep_times_list)):
-            # try:
-            #     df.loc[i, 'departure_time'] = dep_times_list[i]
-            # except Exception as e:
-            #     pass
-            # try:
-            #     df.loc[i, 'arrival_time'] = arr_times_list[i]
-            # except Exception as e:
-            #     pass
+
             try:
                 df.loc[i, 'airline'] = airlines_list[i]
             except Exception as e:
@@ -165,10 +147,6 @@ def function(request):
                 df.loc[i, 'stops'] = stops_list[i]
             except Exception as e:
                 pass
-            # try:
-            #     df.loc[i, 'layovers'] = layovers_list[i]
-            # except Exception as e:
-            #     pass
             try:
                 df.loc[i, str(current_price)] = price_list[i]
             except Exception as e:
@@ -177,7 +155,7 @@ def function(request):
         print('Excel Sheet Created!')
 
     url = 'https://www.expedia.co.in/Flights-Search?flight-type=on&starDate=05%2F12%2F2019&mode=search&trip=oneway&leg1=from%3ADelhi%2C+India+%28DEL-Indira+Gandhi+Intl.%29%2Cto%3AMumbai%2C+India+%28BOM-Chhatrapati+Shivaji+Intl.%29%2Cdeparture%3A05%2F12%2F2019TANYT&passengers=children%3A0%2Cadults%3A1%2Cseniors%3A0%2Cinfantinlap%3AY'
-    browser = webdriver.Chrome(executable_path='C:\\Users\\Meet\\Desktop\\chromedriver.exe')
+    browser = webdriver.Chrome(executable_path='C:\\Users\\Admin\\Downloads\\chromedriver.exe')
     browser.implicitly_wait(10)
     browser.get(url)
 
@@ -198,14 +176,6 @@ def function(request):
        b.append(des1)
 
     zipplist = zip(a,b,dep_times_list,arr_times_list,durations_list,stops_list,price_list,airlines_list)
-    # m = []
-    # m = results_agg['origin']
-    # n = []
-    # n = results_agg['destination']
-    # o = []
-    # o = results_agg['startdate']
-    # p = []
-    # p = results_agg['price(in ?)']
     zl = zip(src,des,dt2,price_list[0])
 
     return render(request, 'student/disp.html', {'zipplist': zipplist,'zl':zl})
