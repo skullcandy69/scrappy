@@ -124,9 +124,9 @@ def function(request):
         # prices
         prices = browser.find_elements_by_xpath("//span[@data-test-id='listing-price-dollars']")
         price_list = [value.text.split('Rs')[1] for value in prices]
-
+        print (price_list[0])
         durations = browser.find_elements_by_xpath("//span[@data-test-id='duration']")
-        durations_list = [durations[i].text for i in range(0,14)]
+        durations_list = [durations[i].text for i in range(0,10)]
 
         # stops
         stops = browser.find_elements_by_xpath("//span[@class='number-stops']")
@@ -155,7 +155,7 @@ def function(request):
         print('Excel Sheet Created!')
 
     url = 'https://www.expedia.co.in/Flights-Search?flight-type=on&starDate=05%2F12%2F2019&mode=search&trip=oneway&leg1=from%3ADelhi%2C+India+%28DEL-Indira+Gandhi+Intl.%29%2Cto%3AMumbai%2C+India+%28BOM-Chhatrapati+Shivaji+Intl.%29%2Cdeparture%3A05%2F12%2F2019TANYT&passengers=children%3A0%2Cadults%3A1%2Cseniors%3A0%2Cinfantinlap%3AY'
-    browser = webdriver.Chrome(executable_path='C:\\Users\\Admin\\Downloads\\chromedriver.exe')
+    browser = webdriver.Chrome(executable_path='C:\\Users\\Meet\\Desktop\\chromedriver.exe')
     browser.implicitly_wait(10)
     browser.get(url)
 
@@ -167,15 +167,15 @@ def function(request):
 
     search()
     compile_data()
-    cheapest_flight = price_list
+    bb=price_list[0]
     a=[]
-    for i in range (0,15):
+    for i in range (0,10):
         a.append(src1)
     b=[]
-    for i in range (0,15):
+    for i in range (0,10):
        b.append(des1)
 
     zipplist = zip(a,b,dep_times_list,arr_times_list,durations_list,stops_list,price_list,airlines_list)
-    zl = zip(src,des,dt2,price_list[0])
+    zl = zip(src,des,dt2)
 
-    return render(request, 'student/disp.html', {'zipplist': zipplist,'zl':zl})
+    return render(request, 'student/disp.html', {'zipplist': zipplist,'zl':zl,'bb':bb})
