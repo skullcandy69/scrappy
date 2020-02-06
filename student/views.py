@@ -124,35 +124,17 @@ def function(request):
         # prices
         prices = browser.find_elements_by_xpath("//span[@data-test-id='listing-price-dollars']")
         price_list = [value.text.split('Rs')[1] for value in prices]
-        # a=pd.DataFrame(price_list)
-        # print(a)
-
-        # durations
+        print (price_list[0])
         durations = browser.find_elements_by_xpath("//span[@data-test-id='duration']")
-        durations_list = [durations[i].text for i in range(0,14)]
+        durations_list = [durations[i].text for i in range(0,10)]
 
         # stops
         stops = browser.find_elements_by_xpath("//span[@class='number-stops']")
         stops_list = [value.text for value in stops]
 
-        # layovers
-        # layovers = browser.find_elements_by_xpath("//span[@data-test-id='layover-airport-stops']")
-        # layovers_list = [value.text for value in layovers]
-
-        # now = datetime.datetime.now()
-        # current_date = (str(now.year) + '-' + str(now.month) + '-' + str(now.day))
-        # current_time = (str(now.hour) + ':' + str(now.minute))
-        # current_price = 'price' + '(' + current_date + '---' + current_time + ')'
         current_price = 'price'
         for i in range(len(dep_times_list)):
-            # try:
-            #     df.loc[i, 'departure_time'] = dep_times_list[i]
-            # except Exception as e:
-            #     pass
-            # try:
-            #     df.loc[i, 'arrival_time'] = arr_times_list[i]
-            # except Exception as e:
-            #     pass
+
             try:
                 df.loc[i, 'airline'] = airlines_list[i]
             except Exception as e:
@@ -165,10 +147,6 @@ def function(request):
                 df.loc[i, 'stops'] = stops_list[i]
             except Exception as e:
                 pass
-            # try:
-            #     df.loc[i, 'layovers'] = layovers_list[i]
-            # except Exception as e:
-            #     pass
             try:
                 df.loc[i, str(current_price)] = price_list[i]
             except Exception as e:
@@ -189,23 +167,15 @@ def function(request):
 
     search()
     compile_data()
-    cheapest_flight = price_list
+    bb=price_list[0]
     a=[]
-    for i in range (0,15):
+    for i in range (0,10):
         a.append(src1)
     b=[]
-    for i in range (0,15):
+    for i in range (0,10):
        b.append(des1)
 
     zipplist = zip(a,b,dep_times_list,arr_times_list,durations_list,stops_list,price_list,airlines_list)
-    # m = []
-    # m = results_agg['origin']
-    # n = []
-    # n = results_agg['destination']
-    # o = []
-    # o = results_agg['startdate']
-    # p = []
-    # p = results_agg['price(in ?)']
-    zl = zip(src,des,dt2,price_list[0])
+    zl = zip(src,des,dt2)
 
-    return render(request, 'student/disp.html', {'zipplist': zipplist,'zl':zl})
+    return render(request, 'student/disp.html', {'zipplist': zipplist,'zl':zl,'bb':bb})

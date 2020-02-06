@@ -6,7 +6,7 @@
     <!link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <style>
-        body
+       <body>
 {
 background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('https://st2.depositphotos.com/3569313/8373/i/950/depositphotos_83738860-stock-photo-blur-tropical-beach-with-sun.jpg');
 background-size: cover;
@@ -73,35 +73,79 @@ background: #fff!important ;
 color:#000!important;
 transition: 0.5s;
 }
+body{
+background:url('https://wordpress.accuweather.com/wp-content/uploads/2019/05/gettyimages-925306698.jpg')no-repeat center fixed;
+background-size:cover;
+background-blend-mode:lighten;
+}
+table,th,td{
+	width:90%;
+	margin:auto;
+	border:1px solid white;
+	border-collapse:collapse;
+	text-align:center;
+	font-size:20px;
+	table-layout:fixed;
+	background:white;
+	opacity:0.5;
+	color:black;
+	margin-top:40px;
+}
+th,td{
+padding:10px;
+opacity:2.0;
+}
+div{
+background:white;
+opacity:0.5;
+margin:auto;
+border:1px solid white;
+font-size:24px;
+padding:20px;
+margin-top:30px;
+text-align:center;
+margin-left:50px;
+margin-right:50px;
+}
     </style>
 </head>
 
-<h1><font size="10"><center>Details for all flights</center></font></h1>
-<hr>
-<font size="7"><pre>&nbsp Source | Destination | Start date | End date | Price</pre></font>
-<font size ='4'>
+<h1><font size="10"><center>DETAILS FOR ALL FLIGHTS</center></font></h1>
+<table>
+    <tr>
+        <th>SOURCE</th>
+        <th>DESTINATION</th>
+        <th>DEPARTURE </th>
+        <th>ARRIVAL</th>
+        <th>DURATION</th>
+        <th>AIRLINE NAME</th>
+        <th>PRICE</th>
+    
 {% for i,j,x,y,z,w,m,n in zipplist%}
-    &nbsp &nbsp   &nbsp &nbsp   &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp
-    {{i}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-    {{j}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-    {{x}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-    {{y}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-    {{z}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-    {{w}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-    {{m}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-    {{n}} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-   <br>
+    <tr>
+    <td>{{i}}</td>
+    <td>{{j}}</td> 
+    <td>{{x}}</td> 
+    <td>{{y}}</td> 
+    <td>{{z}}</td> 
+    <td>{{n}}</td> 
+    <td>{{m}}</td> 
+    
+   </tr>
 {% endfor %}
-</font>
+</table>
 
-<font size="6"> &nbsp &nbsp   &nbsp &nbsp  Cheapest Flight</font><br>
-<font size="5">
-{% for a,b,c,d in zl %}
-    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Source: {{a}}<br>
-    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Destination: {{b}}<br>
-    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Date: {{c}}<br>
-    &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp Price: {{d}}₹<br>
+
+<div>
+    <font size="8"><b>Cheapest Flight</b></font><br>
+
+{% for a,b,c in zl %}
+ Source: {{a}}<br>
+ Destination: {{b}}<br>
+ Date: {{c}}<br>
+ Price: {{bb}}₹<br>
 {% endfor %}
-</font>
+</div>
+</body>
 
 
